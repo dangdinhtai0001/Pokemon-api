@@ -28,6 +28,7 @@ const getPokemonList = async (limit, offset) => {
         id: pokemonData.id,
         is_default: pokemonData.is_default,
         order: pokemonData.order,
+        gender: null,
       };
     })
   );
@@ -46,4 +47,9 @@ const getPokemonByName = async (name) => {
   return pokemon;
 };
 
-export { PokedexInstance, getPokemonList, getPokemonByName };
+const getGendersList = async () => {
+  const gendersList = await PokedexInstance.getGendersList();
+  return gendersList;
+};
+
+export { PokedexInstance, getPokemonList, getPokemonByName, getGendersList };

@@ -1,6 +1,11 @@
 import express from "express";
 import cors from "cors";
-import { PokedexInstance, getPokemonList, getPokemonByName } from "./Pokedex.js";
+import {
+  PokedexInstance,
+  getPokemonList,
+  getPokemonByName,
+  getGendersList,
+} from "./Pokedex.js";
 
 const app = express();
 app.use(cors());
@@ -42,6 +47,14 @@ app.get("/getEndpointsList", async (request, response) => {
   console.log("============== getEndpointsList ==============");
 
   let res = await PokedexInstance.getEndpointsList();
+
+  response.send(res);
+});
+
+app.get("/getGendersList", async (request, response) => {
+  console.log("============== getGendersList ==============");
+
+  let res = await PokedexInstance.getGendersList();
 
   response.send(res);
 });
