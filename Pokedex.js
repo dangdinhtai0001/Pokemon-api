@@ -28,7 +28,7 @@ const getPokemonList = async (limit, offset) => {
         id: pokemonData.id,
         is_default: pokemonData.is_default,
         order: pokemonData.order,
-        gender: null,
+        gender: "female",
       };
     })
   );

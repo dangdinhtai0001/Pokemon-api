@@ -56,7 +56,18 @@ app.get("/getGendersList", async (request, response) => {
 
   let res = await PokedexInstance.getGendersList();
 
-  response.send(res);
+  let result = {
+    ...res,
+    results: res.results.map((item) => {
+      return {
+        ...item,
+        display: item.name.toLocaleUpperCase(),
+        value: item.name.toLowerCase(),
+      };
+    }),
+  };
+
+  response.send(result);
 });
 
 // Start the server
