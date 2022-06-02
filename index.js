@@ -7,6 +7,11 @@ import {
   getGendersList,
 } from "./Pokedex.js";
 
+const delay = (millis) =>
+  new Promise((resolve, reject) => {
+    setTimeout((_) => resolve(), millis);
+  });
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -21,7 +26,12 @@ app.post("/getPokemonsList", async (request, response) => {
 
   const page = request.body.page || 1;
   const pageSize = request.body.pageSize || 100;
+
+  console.log(`page: ${page}, pageSize: ${pageSize}`);
+
   let res = await getPokemonList(pageSize, page);
+
+  await delay(3000);
 
   let execution_time = new Date().getTime() - start;
   console.log(`${res.data.length} pokemons found in ${execution_time}ms`);
