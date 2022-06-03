@@ -31,7 +31,7 @@ app.post("/getPokemonsList", async (request, response) => {
 
   let res = await getPokemonList(pageSize, page);
 
-  await delay(3000);
+  await delay(100);
 
   let execution_time = new Date().getTime() - start;
   console.log(`${res.data.length} pokemons found in ${execution_time}ms`);
